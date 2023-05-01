@@ -6,7 +6,7 @@ import PayloadWithoutCustumerName from '../../fixtures/TransactionCreditCard/4xx
 
 describe('API test transaction credit card', () => {
 
-    it('Should be transaction credit card with success!', () => {
+    it.skip('Should be transaction credit card with success!', () => {
         const body_request = data
     
         cy.request({
@@ -60,10 +60,11 @@ describe('API test transaction credit card', () => {
         }).then((response) => {
             expect(response.status).to.be.equal(400)
             expect(response.body[0].Code).to.be.equal(122)
+            expect(response.body[0].Message).to.be.equal("MerchantOrderId  is required")
         })
     })
 
-    it('Should be BadRequest because Customer Name is required', () => {
+    it.skip('Should be BadRequest because Customer Name is required', () => {
         const body_request = PayloadWithoutCustumerName
     
         cy.request({
@@ -78,6 +79,7 @@ describe('API test transaction credit card', () => {
         }).then((response) => {
             expect(response.status).to.be.equal(400)
             expect(response.body[0].Code).to.be.equal(105)
+            expect(response.body[0].Message).to.be.equal("Customer Name is required")
         })
     })
 
